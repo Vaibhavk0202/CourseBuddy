@@ -1,6 +1,14 @@
-const BASE_URL = process.env.REACT_APP_BASE_URL   //deployed backend base url
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
+// Add this validation
+if (!BASE_URL) {
+  console.error("REACT_APP_BASE_URL is not defined in .env");
+  throw new Error("BASE_URL must be set in environment variables");
+}
 
+console.log("API Base URL:", BASE_URL); // Debug log
+
+// Keep all your existing endpoints exactly as they are
 // AUTH ENDPOINTS
 export const endpoints = {
   SENDOTP_API: BASE_URL + "/auth/sendotp",
@@ -9,6 +17,8 @@ export const endpoints = {
   RESETPASSTOKEN_API: BASE_URL + "/auth/reset-password-token",
   RESETPASSWORD_API: BASE_URL + "/auth/reset-password",
 }
+
+// ... rest of your endpoints remain exactly the same
 
 // PROFILE ENDPOINTS
 export const profileEndpoints = {

@@ -27,12 +27,16 @@ database.connect();
 // Middlewares
 app.use(express.json());
 app.use(cookieParser());
+// Simple CORS reading from .env
 app.use(
-	cors({
-		origin: "*",
-		credentials: true,
-	})
+    cors({
+        origin: process.env.FRONTEND_URLS,
+        credentials: true,
+        methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+        allowedHeaders: ["Content-Type", "Authorization", "Cookie"]
+    })
 );
+
 app.use(
 	fileUpload({
 		useTempFiles: true,
